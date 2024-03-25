@@ -1,0 +1,40 @@
+BOARD = GENERIC_RP_RP2040
+SERIAL_DRIVER = vendor
+
+MCU = RP2040
+BOOTLOADER = rp2040
+BOOTMAGIC_ENABLE = yes
+
+VIA_ENABLE          = yes
+VIAL_ENABLE         = yes
+LTO_ENABLE          = yes
+
+RGBLIGHT_ENABLE     = no
+RGB_MATRIX_ENABLE   = no # Can't have RGBLIGHT and RGB_MATRIX at the same time.
+OLED_ENABLE         = no
+COMBO_ENABLE        = yes
+MOUSEKEY_ENABLE = yes      # Mouse keys
+EXTRAKEY_ENABLE = yes      # Audio control and System control
+
+QMK_SETTINGS        = yes
+
+# SPACE_CADET_ENABLE = no
+# GRAVE_ESC_ENABLE = no
+MAGIC_ENABLE = yes
+
+DEBOUNCE_TYPE = sym_defer_pk
+AUTO_SHIFT_ENABLE = yes
+TAP_DANCE_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
+
+#ANALOG_DRIVER_REQUIRED = yes
+#JOYSTICK_ENABLE = yes
+#POINTING_DEVICE_ENABLE = yes
+#POINTING_DEVICE_DRIVER = analog_joystick
+
+# I2C_DRIVER_REQUIRED = yes
+
+CONSOLE_ENABLE = no
+
+ENCODER_ENABLE = yes
+ENCODER_MAP_ENABLE = yes
