@@ -23,19 +23,22 @@ enum layers {
     k20, k21, k22, k23, k24, k25, k45, k95, k75, k74, k73, k72, k71, k70, \
     k30, k31, k32, k33, k34, k35,           k85, k84, k83, k82, k81, k80, \
               k42, k43,                               k93, k92,           \
-                        k46, k36, k16, k66, k86, k96,                     \
-                             k06, k26, k76, k56                           \
+                        k46, k36, k16, k66,      k96,                     \
+                             k06, k26, k76, k56,                 k67,     \
+                                                            k77, k87, k97,\
+                                                                 k57      \
 ) { \
-    { k00, k01, k02, k03, k04, k05, k06 }, \
-    { k10, k11, k12, k13, k14, k15, k16 }, \
-    { k20, k21, k22, k23, k24, k25, k26 }, \
-    { k30, k31, k32, k33, k34, k35, k36 }, \
-    { KC_NO, KC_NO, k42, k43, KC_NO, k45, k46 }, \
-    { k50, k51, k52, k53, k54, k55, k56 }, \
-    { k60, k61, k62, k63, k64, k65, k66 }, \
-    { k70, k71, k72, k73, k74, k75, k76 }, \
-    { k80, k81, k82, k83, k84, k85, k86 }, \
-    { KC_NO, KC_NO, k92, k93, KC_NO, k95, k96 }  \
+    { k00, k01, k02, k03, k04, k05, k06, KC_NO }, \
+    { k10, k11, k12, k13, k14, k15, k16, KC_NO }, \
+    { k20, k21, k22, k23, k24, k25, k26, KC_NO }, \
+    { k30, k31, k32, k33, k34, k35, k36, KC_NO }, \
+    { KC_NO, KC_NO, k42, k43, KC_NO, k45, k46, KC_NO }, \
+\
+    { k50, k51, k52, k53, k54, k55, k56, k57 }, \
+    { k60, k61, k62, k63, k64, k65, k66, k67 }, \
+    { k70, k71, k72, k73, k74, k75, k76, k77 }, \
+    { k80, k81, k82, k83, k84, k85, KC_NO, k87 }, \
+    { KC_NO, KC_NO, k92, k93, KC_NO, k95, k96, k97 }  \
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -46,8 +49,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB, KC_A, KC_S, KC_D, KC_F, KC_G, KC_MUTE, KC_MPLY, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
        KC_LGUI, KC_Z, KC_X, KC_C, KC_V, KC_B,                   KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
                    KC_HOME, KC_END,                                         KC_LBRC, KC_RBRC,
-                              TT(1), KC_LSFT, KC_LALT, KC_BSPC, RSFT_T(KC_DEL), LT(1, KC_ENT),
-                                     KC_LCTL, KC_SPC,   KC_SPC, KC_RCTL
+                              TT(1), KC_LSFT, KC_LALT, KC_BSPC,       LT(1, KC_ENT),
+                                     KC_LCTL, KC_SPC,   KC_SPC, KC_RCTL,                     KC_UP,
+                                                                                KC_LEFT, RSFT_T(KC_DEL), KC_RGHT,
+                                                                                             KC_DOWN
     ),
 
     [_LOWER] = LAYOUT(
@@ -56,8 +61,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_PSLS,  KC_4,  KC_5,  KC_6, KC_PMNS, _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT,   KC_INS, KC_APP,
         _______,    KC_0,  KC_1,  KC_2,  KC_3, KC_PDOT,                   _______, KC_HOME, KC_PSCR,  KC_END,  _______, KC_RGUI,
                         _______, _______,                                                   _______, _______,
-                                      _______, _______, _______, _______, _______, _______,
-                                               _______ ,_______, _______, _______
+                                      _______, _______, _______, _______,          _______,
+                                               _______ ,_______, _______, _______,             _______,
+                                                                                       _______,_______,_______,
+                                                                                               _______
+
     )
 
 //    [_RAISE] = LAYOUT(_______, KC_NUM, KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_VOLU, KC_HOME, KC_PSCR, KC_PGUP, KC_SCRL, KC_CAPS, _______, EQL_LCT, KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, KC_MUTE, KC_LEFT, KC_UP, KC_RGHT, KC_INS, APP_RCT, _______, KC_P0, KC_P1, KC_P2, KC_P3, KC_PCMM, KC_VOLD, KC_END, KC_DOWN, KC_PGDN, KC_PAUS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),

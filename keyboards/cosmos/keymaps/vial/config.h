@@ -29,7 +29,10 @@
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
 #define SPLIT_USB_DETECT
-#define NO_USB_STARTUP_CHECK
+// #define NO_USB_STARTUP_CHECK
+#define SPLIT_USB_TIMEOUT 5000
+#define SPLIT_WATCHDOG_ENABLE
+#define SPLIT_WATCHDOG_TIMEOUT 10000
 
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
