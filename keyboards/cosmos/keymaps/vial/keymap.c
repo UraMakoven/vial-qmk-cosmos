@@ -199,23 +199,20 @@ inline static void render_mods(uint8_t modifiers) {
 }
 
 bool oled_task_user(void) {
-    oled_write_ln_P(get_highest_layer(layer_state) == _RAISE ? PSTR("rais") : PSTR("    "), false);
+    oled_write_ln_P(get_highest_layer(layer_state) == _QWERTY ? PSTR("def ") : PSTR("    "), false);
     oled_write_ln_P(PSTR(" "), false);
 
-    oled_write_ln_P(get_highest_layer(layer_state) == _QWERTY ? PSTR("def ") : PSTR("    "), false);
-
-    // five spaces added ln
     oled_write_ln_P(get_highest_layer(layer_state) == _LOWER ? PSTR("lowr") : PSTR("    "), false);
-    oled_write_ln_P(get_highest_layer(layer_state) == _NUMPAD ? PSTR("num") : PSTR("    "), false);
-    oled_write_ln_P(get_highest_layer(layer_state) == _ADJUST ? PSTR("adj") : PSTR("    "), false);
     oled_write_ln_P(PSTR(" "), false);
 
     render_mods(get_mods());
     oled_write_ln_P(PSTR(" "), false);
 
     led_t led_state = host_keyboard_led_state();
+    oled_write_ln_P(PSTR(" "), false);
     oled_write_ln_P(led_state.num_lock ? PSTR("num") : PSTR("    "), false);
-    // oled_write_ln_P(led_state.caps_lock ? PSTR("caps") : PSTR("    "), false);
+    oled_write_ln_P(PSTR(" "), false);
+    oled_write_ln_P(led_state.caps_lock ? PSTR("CAPS") : PSTR("    "), false);
 
     return false;
 }

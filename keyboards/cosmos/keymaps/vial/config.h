@@ -60,8 +60,8 @@
 // #define ANALOG_JOYSTICK_X_AXIS_PIN GP29
 // #define ANALOG_JOYSTICK_Y_AXIS_PIN GP28
 
-#define I2C1_SCL_PIN GP15
-#define I2C1_SDA_PIN GP14
+#define I2C1_SCL_PIN GP3
+#define I2C1_SDA_PIN GP2
 
 #define ENCODERS_PAD_A \
     { GP29 }
