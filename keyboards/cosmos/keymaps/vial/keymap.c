@@ -90,8 +90,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 // }
 
-#include "transactions.h"
-
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     // If console is enabled, it will print the matrix position and status of each key pressed
 #ifdef CONSOLE_ENABLE
@@ -111,6 +109,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     return true;
 }
 
+#include "transactions.h"
 void suspend_power_down_user(void) {
 #ifdef RGBLIGHT_ENABLE
     rgblight_suspend();
@@ -123,8 +122,8 @@ void suspend_power_down_user(void) {
 #ifdef OLED_ENABLE
     oled_off();
 
-    // bool current_oled_state = false;
-    // transport_execute_transaction(PUT_OLED, &current_oled_state, sizeof(current_oled_state), NULL, 0);
+    bool current_oled_state = false;
+    transport_execute_transaction(PUT_OLED, &current_oled_state, sizeof(current_oled_state), NULL, 0);
 #endif
 }
 

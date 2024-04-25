@@ -11,7 +11,9 @@ LTO_ENABLE          = yes
 
 RGBLIGHT_ENABLE     = no
 RGB_MATRIX_ENABLE   = no # Can't have RGBLIGHT and RGB_MATRIX at the same time.
+
 OLED_ENABLE         = yes
+
 COMBO_ENABLE        = yes
 MOUSEKEY_ENABLE = yes      # Mouse keys
 EXTRAKEY_ENABLE = yes      # Audio control and System control
