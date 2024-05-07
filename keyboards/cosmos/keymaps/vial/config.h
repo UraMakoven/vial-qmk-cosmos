@@ -47,7 +47,7 @@
 #define RGBLIGHT_SLEEP          // enable rgblight_suspend() and rgblight_wakeup() in keymap.c
 #define RGBLIGHT_TIMEOUT 120000 // ms to wait until rgblight time out, 900K ms is 15min.
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 2
+#define DYNAMIC_KEYMAP_LAYER_COUNT 3
 #define TAP_CODE_DELAY 25
 
 #undef TRI_LAYER_ENABLE

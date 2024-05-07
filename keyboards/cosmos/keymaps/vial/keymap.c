@@ -7,7 +7,7 @@
 enum layers {
     _QWERTY = 0,
     _LOWER,
-    //_RAISE,
+    _RAISE,
     //_NUMPAD,
     //_ADJUST,
 };
@@ -66,6 +66,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                        _______,_______,_______,
                                                                                                _______
 
+    ),
+
+    [_RAISE] = LAYOUT(
+        _______,   KC_F1, KC_F2, KC_F3, KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, KC_F11,
+        _______, KC_PAST,  KC_7,  KC_8,  KC_9, KC_PPLS,                   _______, KC_PGUP,   KC_UP, KC_PGDN,  KC_CALC, KC_F12,
+        _______, KC_PSLS,  KC_4,  KC_5,  KC_6, KC_PMNS, _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT,   KC_INS, KC_APP,
+        _______,    KC_0,  KC_1,  KC_2,  KC_3, KC_PDOT,                   _______, KC_HOME, KC_PSCR,  KC_END,  _______, KC_RGUI,
+                        _______, _______,                                                   _______, _______,
+                                      _______, _______, _______, _______,          _______,
+                                               _______ ,_______, _______, _______,             _______,
+                                                                                       _______,_______,_______,
+                                                                                               _______
+
     )
 
 //    [_RAISE] = LAYOUT(_______, KC_NUM, KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_VOLU, KC_HOME, KC_PSCR, KC_PGUP, KC_SCRL, KC_CAPS, _______, EQL_LCT, KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, KC_MUTE, KC_LEFT, KC_UP, KC_RGHT, KC_INS, APP_RCT, _______, KC_P0, KC_P1, KC_P2, KC_P3, KC_PCMM, KC_VOLD, KC_END, KC_DOWN, KC_PGDN, KC_PAUS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
@@ -78,7 +91,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #if defined(ENCODER_MAP_ENABLE)
   const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
-    [1] = { ENCODER_CCW_CW(KC_WBAK, KC_WFWD), ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN) }
+    [1] = { ENCODER_CCW_CW(KC_WBAK, KC_WFWD), ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN) },
+    [2] = { ENCODER_CCW_CW(KC_WBAK, KC_WFWD), ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN) }
   };
 #endif
 
@@ -198,10 +212,23 @@ inline static void render_mods(uint8_t modifiers) {
 }
 
 bool oled_task_user(void) {
-    oled_write_ln_P(get_highest_layer(layer_state) == _QWERTY ? PSTR("def ") : PSTR("    "), false);
+    static uint16_t _x = 0;
+
+    if (++_x >= 512) {
+        if (_x == 1024) {
+            _x = 0;
+        } else {
+            oled_write_ln_P(PSTR(" "), false);
+        }
+    }
+
+    oled_write_ln_P(get_highest_layer(layer_state) == _RAISE ? PSTR("raise") : PSTR("     "), false);
     oled_write_ln_P(PSTR(" "), false);
 
-    oled_write_ln_P(get_highest_layer(layer_state) == _LOWER ? PSTR("lowr") : PSTR("    "), false);
+    // oled_write_ln_P(get_highest_layer(layer_state) == _QWERTY ? PSTR("def ") : PSTR("    "), false);
+    // oled_write_ln_P(PSTR(" "), false);
+
+    oled_write_ln_P(get_highest_layer(layer_state) == _LOWER ? PSTR("lower") : PSTR("     "), false);
     oled_write_ln_P(PSTR(" "), false);
 
     render_mods(get_mods());
@@ -209,9 +236,13 @@ bool oled_task_user(void) {
 
     led_t led_state = host_keyboard_led_state();
     oled_write_ln_P(PSTR(" "), false);
-    oled_write_ln_P(led_state.num_lock ? PSTR("num") : PSTR("    "), false);
+    oled_write_ln_P(led_state.num_lock ? PSTR("123") : PSTR("    "), false);
     oled_write_ln_P(PSTR(" "), false);
     oled_write_ln_P(led_state.caps_lock ? PSTR("CAPS") : PSTR("    "), false);
+
+    if (_x <= 512) {
+        oled_write_ln_P(PSTR(" "), false);
+    }
 
     return false;
 }
