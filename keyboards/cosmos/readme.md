@@ -18,6 +18,10 @@ Enter the bootloader in 2 ways:
 
 ## Make
 
+activate qmk
+
+source ~/python/qmk/bin/activate
+
 Make example for this keyboard (after setting up your build environment):
 
     make cosmos
